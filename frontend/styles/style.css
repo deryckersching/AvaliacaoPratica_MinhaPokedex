@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+.cabecalho {
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 30px;
+    background-color: rgb(192, 12, 12);
+    color:rgb(255, 254, 254)
+}
