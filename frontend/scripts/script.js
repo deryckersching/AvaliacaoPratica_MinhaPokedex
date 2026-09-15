@@ -68,13 +68,16 @@ function abrirModal(pokemon) {
     const modalConteudo = document.getElementById("modalConteudo");
     const modal = document.getElementById("pokemonModal");
     modalTitulo.textContent = pokemon.name;
-    
+
     modalConteudo.innerHTML = `
         <img
             src="${pokemon.sprites.other["official-artwork"].front_default}"
             alt="${pokemon.name}"
         >
     `;
+
+    const modalBootstrap = new bootstrap.Modal(modal);
+    modalBootstrap.show();
 
 }
 
