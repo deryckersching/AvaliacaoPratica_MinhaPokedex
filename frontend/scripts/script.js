@@ -32,7 +32,7 @@ todosPokemons.forEach(pokemon => {
 
 
     const card = document.createElement("div");
-    card.classList.add("card");
+    card.classList.add("card", "pokemon-card");
 
     const imagem = document.createElement("img");
     imagem.src = pokemon.sprites.other["official-artwork"].front_default;
@@ -63,10 +63,39 @@ todosPokemons.forEach(pokemon => {
 
 
 
+
+
+
 function abrirModal(pokemon) {
+
     const modalTitulo = document.getElementById("modalTitulo");
     const modalConteudo = document.getElementById("modalConteudo");
     const modal = document.getElementById("pokemonModal");
+
+    const tipos = pokemon.types.map(item => item.type.name);
+
+    const stats = pokemon.stats.map(stat => {
+        return {
+            nome: stat.stat.name,
+            valor: stat.base_stat
+        };
+    });
+
+    const hp = stats.find(stat => stat.nome === "hp");
+
+    const attack = stats.find(stat => stat.nome === "attack");
+
+    const defense = stats.find(stat => stat.nome === "defense");
+
+    const specialAttack = stats.find(stat => stat.nome === "special-attack");
+
+    const specialDefense = stats.find(stat => stat.nome === "special-defense");
+
+    const speed = stats.find(stat => stat.nome === "speed");
+
+
+
+
     modalTitulo.textContent = pokemon.name;
 
     modalConteudo.innerHTML = `
@@ -74,11 +103,26 @@ function abrirModal(pokemon) {
             src="${pokemon.sprites.other["official-artwork"].front_default}"
             alt="${pokemon.name}"
         >
+
+        <p>Tipo: ${tipos.join(" / ")}</p>
+
+        <p>HP: ${hp.valor}</p>
+
+        <p>Ataque: ${attack.valor}</p>
+
+        <p>Defesa: ${defense.valor}</p>
+
+        <p>Ataque Especial: ${specialAttack.valor}</p>
+
+        <p>Defesa Especial: ${specialDefense.valor}</p>
+
+        <p>Velocidade: ${speed.valor}</p>
     `;
 
     const modalBootstrap = new bootstrap.Modal(modal);
     modalBootstrap.show();
-
 }
+
+    
 
 pegarPokemons();
