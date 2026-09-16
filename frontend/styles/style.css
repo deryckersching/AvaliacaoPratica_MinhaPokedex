@@ -1,9 +1,9 @@
 body {
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
     font-size: 18px;
     background-color: rgb(197, 23, 23);
-    margin: 0;
-    padding: 0;
 }
 
 header {
@@ -29,6 +29,7 @@ header h1 {
 .pokemon-card {
     background-color: rgb(248, 248, 248);
     border: none;
+    margin-bottom: 25px;
     border-radius: 15px;
     cursor: pointer;
     transition: 0.3s;
@@ -38,6 +39,37 @@ header h1 {
     transform: scale(1.05);
 }
 
+.pokemon-card.clicado {
+    background-color: rgb(255, 255, 255);
+    color:brown;
+}
+
 .pokemon-card img {
     width: 100%;
+    height: 300px;
+    padding: 15px;
+}
+
+.tipo-grass {
+    background-color: rgb(10, 156, 30);
+}
+
+.tipo-fire {
+    background-color: rgb(214, 101, 48);
+}
+
+.tipo-water {
+    background-color: rgb(0, 113, 219);
+}
+
+.tipo-bug {
+    background-color: rgb(98, 202, 14);
+}
+
+.tipo-poison {
+    background-color: rgb(147, 61, 228);
+}
+
+.tipo-normal {
+    background-color: rgb(170, 170, 170);
 }

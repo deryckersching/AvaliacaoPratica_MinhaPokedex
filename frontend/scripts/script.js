@@ -33,6 +33,9 @@ todosPokemons.forEach(pokemon => {
 
     const card = document.createElement("div");
     card.classList.add("card", "pokemon-card");
+    
+    const tipo = pokemon.types[0].type.name;
+    card.classList.add(`tipo-${tipo}`);
 
     const imagem = document.createElement("img");
     imagem.src = pokemon.sprites.other["official-artwork"].front_default;
