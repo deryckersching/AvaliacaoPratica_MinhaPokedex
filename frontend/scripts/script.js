@@ -3,13 +3,23 @@ let todosPokemons = [];
 
 async function pegarPokemons() {
     try {
-        const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20");
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=52");
+
+        if (!response.ok) {
+            throw new Error("Erro ao buscar os Pokémons");
+        }
+
         const data = await response.json();
         console.log(data)
 
         todosPokemons = await Promise.all(
             data.results.map(async (pokemon) => {
                 const response = await fetch(pokemon.url);
+
+                if(!response.ok) {
+                    throw new Error("Erro ao buscar os detalhes dos Pokémons");
+                }
+
                 return await response.json();
             })
 
@@ -28,7 +38,7 @@ function renderizarPokemons() {
 
 todosPokemons.forEach(pokemon => {
     const coluna = document.createElement("div");
-    coluna.classList.add("col-3");
+    coluna.classList.add("col-12", "col-sm-6", "col-md-4", "col-lg-3");
 
 
     const card = document.createElement("div");
@@ -73,9 +83,27 @@ function abrirModal(pokemon) {
 
     const modalTitulo = document.getElementById("modalTitulo");
     const modalConteudo = document.getElementById("modalConteudo");
+
     const modal = document.getElementById("pokemonModal");
+    const modalCaixa = modal.querySelector(".modal-content");
 
     const tipos = pokemon.types.map(item => item.type.name);
+
+    const tipoPrincipal = tipos[0];
+
+    modalCaixa.classList.remove(
+        "modal-grass",
+        "modal-fire",
+        "modal-water",
+        "modal-bug",
+        "modal-poison",
+        "modal-normal",
+        "modal-eletric",
+        "modal-fairy"
+    );
+
+    modalCaixa.classList.add(`modal-${tipoPrincipal}`);
+
 
     const stats = pokemon.stats.map(stat => {
         return {
